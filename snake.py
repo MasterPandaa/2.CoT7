@@ -1,5 +1,6 @@
-import sys
 import random
+import sys
+
 import pygame
 
 # -----------------------------
@@ -30,11 +31,13 @@ OPPOSITE = {
     DIR_RIGHT: DIR_LEFT,
 }
 
+
 # -----------------------------
 # Utilitas
 # -----------------------------
 def snap_to_grid(val, size):
     return val - (val % size)
+
 
 def random_food_position(snake_segments):
     """Kembalikan posisi makanan acak yang tidak bertumpuk dengan ular."""
@@ -44,12 +47,14 @@ def random_food_position(snake_segments):
         if (x, y) not in snake_segments:
             return (x, y)
 
+
 def draw_grid(surface):
     """Opsional: menggambar grid untuk visualisasi."""
     for x in range(0, WIDTH, BLOCK_SIZE):
         pygame.draw.line(surface, GRAY, (x, 0), (x, HEIGHT))
     for y in range(0, HEIGHT, BLOCK_SIZE):
         pygame.draw.line(surface, GRAY, (0, y), (WIDTH, y))
+
 
 def draw_snake(surface, snake_segments):
     for i, (x, y) in enumerate(snake_segments):
@@ -59,10 +64,12 @@ def draw_snake(surface, snake_segments):
         # Highlight border
         pygame.draw.rect(surface, BLACK, rect, 1)
 
+
 def draw_food(surface, food_pos):
     rect = pygame.Rect(food_pos[0], food_pos[1], BLOCK_SIZE, BLOCK_SIZE)
     pygame.draw.rect(surface, RED, rect)
     pygame.draw.rect(surface, BLACK, rect, 1)
+
 
 def render_text(surface, text, pos, size=24, color=WHITE, center=False):
     font = pygame.font.SysFont(None, size)
@@ -73,6 +80,7 @@ def render_text(surface, text, pos, size=24, color=WHITE, center=False):
     else:
         rect.topleft = pos
     surface.blit(img, rect)
+
 
 # -----------------------------
 # Game utama
@@ -177,6 +185,7 @@ def main():
 
         pygame.display.flip()
         clock.tick(FPS)
+
 
 if __name__ == "__main__":
     main()
